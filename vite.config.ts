@@ -23,23 +23,43 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: faqelize.title,
+        name: FaqelizeConfig.title,
         themeColor: "#FFFFFF",
         msTileColor: "#FFFFFF",
         appleMobileWebAppCapable: "yes",
         appleMobileWebAppStatusBarStyle: "default",
-        icons: {
-          favicon32: "./img/icons/favicon-32x32.png",
-          favicon16: "./img/icons/favicon-16x16.png",
-          appleTouchIcon: "./img/icons/apple-touch-icon.png",
-          maskIcon: "./img/icons/safari-pinned-tab.svg",
-          msTileImage: "./img/icons/mstile-150x150.png",
-        },
+        icons: [
+          {
+            src: "./img/icons/favicon-32x32.png",
+            sizes: "32x32",
+            type: "image/png",
+          },
+          {
+            src: "./img/icons/favicon-16x16.png",
+            sizes: "16x16",
+            type: "image/png",
+          },
+          {
+            src: "./img/icons/apple-touch-icon.png",
+            sizes: "180x180",
+            type: "image/png",
+          },
+          {
+            src: "./img/icons/safari-pinned-tab.svg",
+            sizes: "any",
+            type: "image/svg+xml",
+          },
+          {
+            src: "./img/icons/mstile-150x150.png",
+            sizes: "150x150",
+            type: "image/png",
+          },
+        ],
         manifestOptions: {
           background_color: "#FFFFFF",
           display: "standalone",
-          name: faqelize.title,
-          short_name: faqelize.title,
+          name: FaqelizeConfig.title,
+          short_name: FaqelizeConfig.title,
           start_url: "./",
           theme_color: "#FFFFFF",
         },
