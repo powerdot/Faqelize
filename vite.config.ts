@@ -5,6 +5,7 @@ import vue from "@vitejs/plugin-vue";
 import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite";
 import FaqelizeBuildTool from "./faqelize/build_tool";
 import FaqelizeConfig from "./faqelize.config";
+import { VitePWA } from "vite-plugin-pwa";
 
 const hash = new Date().getTime();
 
@@ -19,6 +20,7 @@ export default defineConfig({
       ),
       runtimeOnly: false,
     }),
+    VitePWA({ registerType: "autoUpdate" }),
   ],
   resolve: {
     alias: {
