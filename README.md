@@ -14,7 +14,7 @@
 - [How to build](#how-to-build)
 - [How to serve build on local server](#how-to-serve-build-on-local-server)
 - [Database format](#database-format)
-  - [Simple JSON database with questions and answers.](#simple-json-database-with-questions-and-answers)
+  - [Simple JSON database with questions and answers](#simple-json-database-with-questions-and-answers)
   - [Database with pages](#database-with-pages)
   - [Database with simple answers as html](#database-with-simple-answers-as-html)
 - [Database sample](#database-sample)
@@ -58,16 +58,16 @@ showLanguageSwitcher | boolean | true | Display language switcher
 usePins | boolean | true | Enable pins for questions
 savePassword | boolean | true | Autosave password hash in LocalStorage
 encryptDatabase | boolean | true | Encrypt database.json with password while building
-installAsPWA | boolean | true | Suggest install as app on mobile devices
+installAsPWA | boolean | true | Suggest installing as app on mobile devices
 disableLogoutOnStandalone | boolean | true | Disable logout if page works as PWA on smartphone
 logo | string/boolean |  | Set logotype image.<br>If string is empty - default logo from ./public/img/logo.png<br>If string is not empty - image from string (URL or base64)<br>If bool is true - default logo from ./public/img/logo.png<br>If bool is false - no logo
 productionPublicPath | string | /Faqelize/ | Public path for production build
-acceptPasswordParameter | boolean | true | Accept login by `&password` URL parameter.<br>! Can be unsecure.<br>*But if you use it, better send sha256 password hash instead of raw password.*
+acceptPasswordParameter | boolean | true | Accept login by `&password` URL parameter.<br>! Can be insecure.<br>*However, if you use it, better send sha256 password hash instead of raw password.*
 passwordParameterKey | string | password | Password URL parameter key
 clearPasswordParameter | boolean | true | Clear password URL parameter after login
-acceptLogoParameter | boolean | true | Accept logo by `&logo` URL parameter.<br>! Can be unsecure for XSS.
+acceptLogoParameter | boolean | true | Accept logo by `&logo` URL parameter.<br>! Can be insecure for XSS.
 logoParameterKey | string | logo | Logo URL parameter key
-acceptDatabaseParameter | boolean | true | Accept database by `&database` URL parameter.<br>! Can be unsecure for XSS.
+acceptDatabaseParameter | boolean | true | Accept database by `&database` URL parameter.<br>! Can be insecure for XSS.
 databaseParameterKey | string | db | Database URL parameter key
 displayPageIcon | boolean | true | Display or hide icon of "page" type of answer
 answerPageOpeningAnimation | boolean | false | Animate opening for answer page
@@ -77,7 +77,7 @@ answerPageOpeningAnimation | boolean | false | Animate opening for answer page
 * Create `public/database.json` file with [this sample](#database-sample) content *(if you don't have it)*
 * Check `encryptDatabase` (in `faqelize.config.js`) parameter to define password encryption before building
 * Run `npm run build`
-* *(optional)* If `encryptDatabase` is `true` you need to enter password to encrypt database
+* *(optional)* If `encryptDatabase` is `true`, you need to enter password to encrypt database
 * Your FAQ is ready to use in `./docs` folder 🎉
 
 Now you can deploy it on GitHub Pages or any other hosting.
@@ -87,7 +87,7 @@ Now you can deploy it on GitHub Pages or any other hosting.
 
 ## Database format
 
-### Simple JSON database with questions and answers.
+### Simple JSON database with questions and answers
 
 ```json
 [
