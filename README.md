@@ -5,6 +5,21 @@
 🤔 Sometimes it happens that you need to make a FAQ for closed purposes, but you don’t want to install docker or set up a server with a database.  
 🖤 Check it out: <a href="https://powerdot.github.com/Faqelize/" target="_blank">Faqelize Demo</a> with password: <code>1234</code>
 
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Features](#features)
+- [Files](#files)
+- [First start](#first-start)
+- [Configuration file description](#configuration-file-description)
+- [How to build](#how-to-build)
+- [How to serve build on local server](#how-to-serve-build-on-local-server)
+- [Database format](#database-format)
+  - [Simple JSON database with questions and answers.](#simple-json-database-with-questions-and-answers)
+  - [Database with pages](#database-with-pages)
+  - [Database with simple answers as html](#database-with-simple-answers-as-html)
+- [Database sample](#database-sample)
+
+
 ## Features
 * Fully standalone solution
 * No need hosting (can be used with [Pages at GitHub](https://pages.github.com/))
@@ -22,6 +37,15 @@
 * Favicon: `public/favicon.ico`
 * FAQ Database: `public/database.json`
 * i18n locales: `src/i18n/locales/*`
+
+## First start
+* Download this project
+* Run <code>npm i</code>
+* Create `public/database.json` file with [this sample](#database-sample) content
+* Run `npm run dev`
+* Go to <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a> and check the FAQ (`dev` runs without password)  
+
+[Here is](#how-to-build) how to build for production.
 
 ## Configuration file description
 Prop | Type | Default | Description
@@ -49,19 +73,16 @@ displayPageIcon | boolean | true | Display or hide icon of "page" type of answer
 answerPageOpeningAnimation | boolean | false | Animate opening for answer page
 
 
-## How to run dev
-* Download this project
-* Run <code>npm i</code>
-* Run `npm run dev`
-* Go to <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a> and check the FAQ (`dev` runs without password)
-
 ## How to build
+* Create `public/database.json` file with [this sample](#database-sample) content *(if you don't have it)*
 * Check `encryptDatabase` (in `faqelize.config.js`) parameter to define password encryption before building
 * Run `npm run build`
 * *(optional)* If `encryptDatabase` is `true` you need to enter password to encrypt database
 * Your FAQ is ready to use in `./docs` folder 🎉
 
-## How to serve build via vite
+Now you can deploy it on GitHub Pages or any other hosting.
+
+## How to serve build on local server
 * Run `npm run serve`
 
 ## Database format
@@ -104,6 +125,59 @@ answerPageOpeningAnimation | boolean | false | Animate opening for answer page
         "a_html": {
             "html": "<h1>HTML</h1><p>HTML is a markup language used to create web pages.</p>"
         }
+    }
+]
+```
+
+## Database sample
+```json
+[
+    {
+        "id": "what_is_faqelize",
+        "q": "What is Faqelize?",
+        "a_text": "It's a simple client for JSON dictionaries that's support encryption for private usage. It's also a simple way to create a simple FAQ for your website."
+    },
+    {
+        "id": "what_is_json_dict",
+        "q": "What is JSON dictionary?",
+        "a_page": {
+            "page": "JSON_dict",
+            "subText": "All about Dictionaries for Faqelize."
+        }
+    },
+    {
+        "id": "where_to_config",
+        "q": "Where to configure Faqelize?",
+        "a_html": {
+            "html": "In <b>./faqelize.config.js</b> file!"
+        }
+    },
+    {
+        "id": "developer",
+        "q": "Who is the developer?",
+        "a_html": {
+            "html": "GitHub <a href='https://github.com/powerdot' target='_blank'>@powerdot</a> 😎"
+        }
+    },
+    {
+        "id": "encryption",
+        "q": "What kind of encryption is used?",
+        "a_text": "AES256, bro"
+    },
+    {
+        "id": "pinned",
+        "q": "Where are you store pinned questions?",
+        "a_text": "In localStorage localy in your browser. Only question ids."
+    },
+    {
+        "id": "lost_password",
+        "q": "I lost password from database.json",
+        "a_text": "Sorry, here is no way to recover it. You can create a new database.json file and use it. AES256 is used for encryption and it's too strong."
+    },
+    {
+        "id": "searching",
+        "q": "What search engine is used?",
+        "a_text": "Here is MiniSearch. It's a simple search engine for JSON dictionaries."
     }
 ]
 ```
