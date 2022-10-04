@@ -1,0 +1,47 @@
+{
+  "name": "faqelize",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite --port 8080",
+    "build": "run-p type-check build-only",
+    "test:unit": "vitest --environment jsdom",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "type-check": "tsc --noEmit",
+    "build-only": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@intlify/unplugin-vue-i18n": "^0.4.0",
+    "@types/crypto-js": "^4.1.1",
+    "axios": "^0.27.2",
+    "bootstrap-icons": "^1.9.1",
+    "crypto-js": "^4.1.1",
+    "minisearch": "^5.0.0",
+    "password-prompt": "^1.1.2",
+    "vue": "^3.2.38",
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.1.5"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@types/jsdom": "^20.0.0",
+    "@types/node": "^16.11.63",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "@vue/test-utils": "^2.0.2",
+    "@vue/tsconfig": "^0.1.3",
+    "eslint": "^8.22.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "jsdom": "^20.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.0.2",
+    "typescript": "~4.7.4",
+    "vite": "^3.0.9",
+    "vitest": "^0.23.0",
+    "vue-cli-plugin-i18n": "~2.3.1",
+    "vue-tsc": "^0.40.7"
+  }
+}

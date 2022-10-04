@@ -1,0 +1,25 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ],
+  "compilerOptions": {
+    "types": [
+      "vue-i18n",
+      "@types/node",
+      "vite/client",
+      "@types/crypto-js"
+    ],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node"
+  }
+}

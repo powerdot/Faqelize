@@ -1,0 +1,16 @@
+{
+  "ENTER_PASSWORD": "Enter the password",
+  "LOADING": "Loading",
+  "LOGOUT": "Logout",
+  "SEARCH": "Search...",
+  "NO_RESULTS": "No results ¯\\_(ツ)_/¯",
+  "SELECT_LANG": "Interface language",
+  "DATABASE_NOT_FOUND": "Q/A Database not found",
+  "DATABASE_SETUP": "Create <b>database.json</b> in <b>/public</b> directory.",
+  "DATABASE_MORE_INFO": "More info",
+  "DATABASE_IS_EMPTY": "Database is empty",
+  "ALL_DATABASE": "All data",
+  "SEARCHBAR": "Search",
+  "PINNED": "Pinned",
+  "NO_PINNED": "There are no pinned items."
+}
