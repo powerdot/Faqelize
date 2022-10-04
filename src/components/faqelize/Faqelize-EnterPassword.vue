@@ -73,6 +73,7 @@ export default defineComponent({
     background: #f9f9f9;
     padding: 10px 20px;
     outline: none;
+    font-size: 16px;
   }
 }
 </style>
