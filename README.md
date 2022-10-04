@@ -3,7 +3,7 @@
 ![](https://img.shields.io/badge/VUE-3-brightgreen) ![](https://img.shields.io/badge/TypeScript-blue)
 
 🤔 Sometimes it happens that you need to make a FAQ for closed purposes, but you don’t want to install docker or set up a server with a database.  
-🖤 Check it out: <a href="https://powerdot.github.com/Faqelize/" target="_blank">Faqelize Demo</a> with password: <code>1234</code>
+🖤 Check it out: <a href="https://powerdot.github.io/Faqelize/" target="_blank">Faqelize Demo</a> with password: <code>1234</code>
 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
