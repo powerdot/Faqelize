@@ -2,7 +2,7 @@
   "name": "faqelize",
   "version": "0.1.0",
   "scripts": {
-    "dev": "vite --port 8080",
+    "dev": "vite --port 8080 --host",
     "build": "run-p type-check build-only",
     "test:unit": "vitest --environment jsdom",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",

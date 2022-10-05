@@ -19,7 +19,7 @@
       <div class="title">
         {{ item.q }}
       </div>
-      <span class="answer">
+      <span class="answer" :class="{ open: item.expanded }">
         {{ item.a_text ? item.a_text : item.a_page?.subText || "" }}
         <template v-if="item.a_html">
           <div v-html="item.a_html.html"></div>
@@ -38,6 +38,11 @@
 import { defineComponent } from "vue";
 import type Dictionary from "../../../faqelize/types/dictionary";
 import type Item from "../../../faqelize/types/item";
+
+type ResultsItem = Item & {
+  expanded: boolean;
+};
+type ResultsDictionary = ResultsItem[];
 
 export default defineComponent({
   props: {
@@ -61,11 +66,11 @@ export default defineComponent({
   data() {
     return {
       usePins: false,
-      local_list: [] as Dictionary,
+      local_list: [] as ResultsDictionary,
     };
   },
   methods: {
-    pin(item: Item) {
+    pin(item: ResultsItem) {
       this.$emit("pin", { id: item.id, pinned: !item.pinned });
     },
     updateList() {
@@ -74,24 +79,19 @@ export default defineComponent({
         for (let id of this.display_ids) {
           let found = this.list.find((item) => item.id == id);
           if (found) {
-            this.local_list.push(found);
+            this.local_list.push({ ...found, expanded: false });
           }
         }
       } else {
-        this.local_list = this.list;
+        this.local_list = this.list.map((item) => ({
+          ...item,
+          expanded: false,
+        }));
       }
     },
-    open(e: MouseEvent, item: Item) {
-      if (!item.a_page) return this.expandAnswer(e);
+    open(e: MouseEvent, item: ResultsItem) {
+      if (!item.a_page) return (item.expanded = !item.expanded);
       this.$emit("open", item);
-    },
-    expandAnswer(e: any) {
-      for (let el of e.path) {
-        if (el.classList.contains("result")) {
-          el.querySelector(".answer").classList.toggle("open");
-          return;
-        }
-      }
     },
   },
   mounted() {
