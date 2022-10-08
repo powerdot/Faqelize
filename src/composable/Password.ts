@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import type { Ref } from "vue";
+import localStorageKeys from "../../faqelize/plugins/localStorageKeys";
 
 function Password({
   search_query,
