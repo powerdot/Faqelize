@@ -8,12 +8,7 @@ declare module "@vue/runtime-core" {
 }
 
 // Install localstorage keys
-const localStorageKeys = {
-  locale: `faqelize_${document.location.host}_locale` as string,
-  iapwa: `faqelize_${document.location.host}_iapwa` as string,
-  password: `faqelize_${document.location.host}_password` as string,
-  pinned: `faqelize_${document.location.host}_pinned` as string,
-};
+import localStorageKeys from "./plugins/localStorageKeys";
 
 declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
@@ -38,6 +33,14 @@ declare module "@vue/runtime-core" {
   }
 }
 
+// Install Faqelize isStandalone plugin
+import isStandalone from "./plugins/isStandalone";
+declare module "@vue/runtime-core" {
+  interface ComponentCustomProperties {
+    $isStandalone: typeof isStandalone;
+  }
+}
+
 // Export
 export default {
   install: (app) => {
@@ -45,9 +48,11 @@ export default {
     app.config.globalProperties.$localStorageKeys = localStorageKeys;
     app.config.globalProperties.$convertToDictionary = convertToDictionary;
     app.config.globalProperties.$faqelizeCrypto = faqelizeCrypto;
+    app.config.globalProperties.$isStandalone = isStandalone;
   },
   configuration,
   localStorageKeys,
   convertToDictionary,
   faqelizeCrypto,
+  isStandalone,
 };

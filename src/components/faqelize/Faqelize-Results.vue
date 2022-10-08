@@ -99,8 +99,11 @@ export default defineComponent({
     this.updateList();
   },
   watch: {
-    list() {
-      this.updateList();
+    list: {
+      handler() {
+        this.updateList();
+      },
+      deep: true,
     },
     display_ids() {
       this.updateList();

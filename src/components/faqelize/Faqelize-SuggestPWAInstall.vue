@@ -121,12 +121,13 @@ export default defineComponent({
     getSystem() {
       var ua = navigator.userAgent;
       var isAndroid = ua.indexOf("Android") > -1;
-      var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+      var isIOS = /iPad|iPhone|iPod/.test(ua);
       if (isAndroid) {
         return "android";
       } else if (isIOS) {
         return "ios";
       }
+      return "else";
     },
     getBrowser() {
       var ua = navigator.userAgent;
@@ -150,6 +151,7 @@ export default defineComponent({
       } else if (isSafari) {
         return "safari";
       }
+      return "else";
     },
     close() {
       this.$emit("close");
@@ -159,12 +161,12 @@ export default defineComponent({
     init() {
       this.system = this.getSystem();
       this.browser = this.getBrowser();
-      let iOSIsInstalled = window.navigator.standalone === true;
+      let iOSIsInstalled = this.$isStandalone();
       this.show =
         this.$faqelize.installAsPWA &&
-        localStorage.getItem(this.$localStorageKeys.iapwa) != "no" &&
-        this.system &&
-        this.browser &&
+        localStorage.getItem(this.$localStorageKeys.iapwa) !== "no" &&
+        !!this.system &&
+        !!this.browser &&
         !iOSIsInstalled;
     },
   },

@@ -21,7 +21,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    let isStandalone = "standalone" in window.navigator;
+    let isStandalone = this.$isStandalone();
     if (!(this.$faqelize.disableLogoutOnStandalone && isStandalone)) {
       this.show = true;
     }

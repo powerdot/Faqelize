@@ -3,7 +3,6 @@ import App from "./App.vue";
 import router from "./router";
 import { i18n } from "./i18n/index.ts";
 import ifc from "../faqelize/install";
-import "./assets/main.css";
 
 const app = createApp(App);
 document.title = ifc.configuration.title;
