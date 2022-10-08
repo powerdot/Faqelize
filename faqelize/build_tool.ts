@@ -46,7 +46,6 @@ async function BUILD() {
     path.resolve(__dirname, "../public/database.json"),
     "utf8"
   );
-  // const cipher = crypto.createCipher("aes256", key);
   const encrypted = CryptoJS.AES.encrypt(text, key);
 
   // Write encrypted database
