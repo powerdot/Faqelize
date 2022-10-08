@@ -60,6 +60,11 @@ let {
  * Mounted
  */
 
+function passwordEntered(password: string) {
+  setPassword(password);
+  load();
+}
+
 onMounted(() => {
   usePins.value = faqelizeConfig.usePins;
   load();
@@ -77,7 +82,7 @@ onMounted(() => {
     <!-- Password view -->
     <Faqelize-EnterPassword
       v-if="!loading && !password_applied"
-      @password-entered="load"
+      @password-entered="passwordEntered"
       :logo="logo"
     />
 

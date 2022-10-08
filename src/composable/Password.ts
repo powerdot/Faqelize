@@ -9,7 +9,7 @@ function Password({
   search_query: Ref<string>;
   results: Ref<SearchResult[]>;
 }) {
-  const password = ref("");
+  const password = ref("" as string);
   const password_applied = ref(false);
 
   const logout = () => {
@@ -22,7 +22,7 @@ function Password({
   };
 
   const setPassword = (p: string) => {
-    password.value = p;
+    password.value = p.toString();
     return;
   };
 

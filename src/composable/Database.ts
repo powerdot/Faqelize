@@ -78,7 +78,9 @@ function Database({
     passwordApplied();
     database_is_encrypted.value = fetched_database.is_encrypted || false;
     if (fetched_database.is_encrypted && faqelizeConfig.savePassword) {
-      const password_hash = faqelizeCrypto.hashPassword(password.value);
+      const password_hash = faqelizeCrypto.hashPassword(
+        password.value.toString()
+      );
       localStorage.setItem(localStorageKeys.password, password_hash);
     }
     if (fetched_database.value?.length) {
@@ -158,7 +160,7 @@ function Database({
         is_encrypted = true;
         const decripted_raw = faqelizeCrypto.decryptDatabase(
           value,
-          password.value
+          password.value.toString()
         );
         if (!decripted_raw) {
           return { error: "INVALID_PASSWORD", is_encrypted };

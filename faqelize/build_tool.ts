@@ -41,12 +41,15 @@ async function BUILD() {
   }
 
   // Encrypt database
+  const database_path = path.resolve(__dirname, "../public/database.json");
+  if (!fs.existsSync(database_path)) {
+    console.error("Database file not found: " + database_path);
+    return false;
+  }
+  const database_content = fs.readFileSync(database_path, "utf8");
   const key = CryptoJS.SHA256(password).toString();
-  const text = fs.readFileSync(
-    path.resolve(__dirname, "../public/database.json"),
-    "utf8"
-  );
-  const encrypted = CryptoJS.AES.encrypt(text, key);
+  const text = database_content.toString();
+  const encrypted = CryptoJS.AES.encrypt(text, key, {}).toString();
 
   // Write encrypted database
   fs.writeFileSync(
