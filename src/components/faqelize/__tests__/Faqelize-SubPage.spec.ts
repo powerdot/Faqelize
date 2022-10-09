@@ -4,10 +4,10 @@ import { mount } from "@vue/test-utils";
 import SubPage from "../Faqelize-SubPage.vue";
 
 describe("SubPage", () => {
-  it("pageTitle prop renders properly", () => {
+  it("page_title prop renders properly", () => {
     const wrapper = mount(SubPage, {
       props: {
-        pageTitle: "Testing",
+        page_title: "Testing",
       },
       data() {
         return {
