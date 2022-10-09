@@ -5,8 +5,8 @@ import faqelizeCrypto from "../../faqelize/plugins/crypto";
 import convertToDictionary from "../../faqelize/plugins/convertToDictionary";
 import type Dictionary from "../../faqelize/types/dictionary";
 import type PinnedIDs from "../../faqelize/types/pinnedIDs";
-import faqelizeConfig from "../../faqelize.config";
-import { useRoute } from "vue-router";
+import type FaqelizeConfig from "../../faqelize.config";
+import type { Route, Router } from "vue-router";
 
 import axios from "axios";
 import MiniSearch from "minisearch";
@@ -18,26 +18,33 @@ function unusableFn() {
 }
 
 function Database({
+  route,
+  router,
+  faqelizeConfig,
   openItem,
   setPassword,
   passwordApplied,
   logout,
   password,
   SuggestPWAInstall = unusableFn,
+  setSearchDictionary = unusableFn,
 }: {
+  route: Route;
+  router: Router;
+  faqelizeConfig: FaqelizeConfig;
   openItem: (item: Item) => void;
   setPassword: (password: string) => void;
   passwordApplied: () => void;
   logout: () => void;
   password: Ref<string>;
   SuggestPWAInstall: () => void;
+  setSearchDictionary: (dictionary: Dictionary) => void;
 }) {
   const database_not_found = ref(false as boolean);
   const database_is_encrypted = ref(false as boolean);
   const database = ref([] as Dictionary);
   const pinned_ids = ref([] as PinnedIDs);
   const loading = ref(false as boolean);
-  const route = useRoute();
 
   const load = async () => {
     loading.value = true;
@@ -89,14 +96,7 @@ function Database({
           fetched_database.value[doc_i].id = doc_i;
       }
       database.value = fetched_database.value;
-      miniSearch = new MiniSearch({
-        fields: ["q"],
-        storeFields: ["q", "a"],
-        searchOptions: {
-          fuzzy: 0.2,
-        },
-      });
-      miniSearch.addAll(fetched_database.value);
+      setSearchDictionary(database.value);
     }
     // load pinned ids from localstorage
     let pinned_ids_raw = localStorage.getItem(localStorageKeys.pinned);

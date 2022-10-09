@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import faqelizeConfig from "../../faqelize.config";
+import { useRoute, useRouter } from "vue-router";
 
 import useSearch from "../composable/Search";
 import usePassword from "../composable/Password";
@@ -8,6 +9,8 @@ import useDatabase from "../composable/Database";
 import useSubPage from "../composable/SubPage";
 import useLogo from "../composable/Logo";
 
+let route = useRoute();
+let router = useRouter();
 let usePins = ref(false);
 let subPage = ref();
 
@@ -25,11 +28,20 @@ let SuggestPWAInstall = () => {
  * Setup variables and methods from composable
  */
 
-let { logo } = useLogo();
+let { logo } = useLogo({ faqelizeConfig, route });
 
-let { search_query, results, selected_area, changeArea, search } = useSearch();
+let {
+  search_query,
+  results,
+  selected_area,
+  changeArea,
+  search,
+  setSearchDictionary,
+} = useSearch();
 
-let { pageToOpen, pageTitle, openItem, subPageClosed } = useSubPage({
+let { opened_page, page_title, openItem, subPageClosed } = useSubPage({
+  route,
+  router,
   subPage,
 });
 
@@ -48,12 +60,16 @@ let {
   pinned_ids,
   loading,
 } = useDatabase({
+  route,
+  router,
+  faqelizeConfig,
   openItem,
   password,
   setPassword,
   passwordApplied,
   logout,
   SuggestPWAInstall,
+  setSearchDictionary,
 });
 
 /**
@@ -89,10 +105,10 @@ onMounted(() => {
     <!-- Answer page component -->
     <Faqelize-SubPage
       ref="subPage"
-      :pageTitle="pageTitle"
+      :page_title="page_title"
       @closed="subPageClosed"
     >
-      <component :is="pageToOpen" />
+      <component :is="opened_page" />
     </Faqelize-SubPage>
 
     <!-- Control panel -->

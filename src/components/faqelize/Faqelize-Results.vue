@@ -76,10 +76,14 @@ export default defineComponent({
     updateList() {
       if (this.display_ids.length || this.mode == "pinned") {
         this.local_list = [];
-        for (let id of this.display_ids) {
-          let found = this.list.find((item) => item.id == id);
-          if (found) {
-            this.local_list.push({ ...found, expanded: false });
+        if (this.mode == "pinned") {
+          this.local_list = this.list.filter((item) => item.pinned);
+        } else {
+          for (let id of this.display_ids) {
+            let found = this.list.find((item) => item.id == id);
+            if (found) {
+              this.local_list.push({ ...found, expanded: false });
+            }
           }
         }
       } else {

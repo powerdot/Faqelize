@@ -20,7 +20,12 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  props: ["search_query"],
+  props: {
+    search_query: {
+      type: String,
+      default: "",
+    },
+  },
   data() {
     return {
       search_query_local: this.search_query || "",

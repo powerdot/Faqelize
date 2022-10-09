@@ -1,12 +1,16 @@
 import { computed } from "vue";
-import { useRoute } from "vue-router";
+import type { Route } from "vue-router";
 
-import faqelizeConfig from "../../faqelize.config";
+import type FaqelizeConfig from "../../faqelize.config";
 
-function Logo() {
-  const route = useRoute();
+function Logo({
+  faqelizeConfig,
+  route,
+}: {
+  faqelizeConfig: FaqelizeConfig;
+  route: Route;
+}) {
   const logo = computed(() => {
-    faqelizeConfig.showLanguageSwitcher;
     const logo_config = faqelizeConfig.logo;
     const default_logo_path = "./img/logo.png";
     if (faqelizeConfig.acceptLogoParameter) {

@@ -3,7 +3,7 @@
     <div class="background" v-if="isShow" @click="close"></div>
     <div class="subPage" :class="{ animOpen, justOpen }" v-if="isShow">
       <div class="top">
-        <div class="title">{{ pageTitle }}</div>
+        <div class="title">{{ page_title }}</div>
         <!-- close -->
         <div class="close" @click="close">
           <i class="bi bi-x"></i>
@@ -29,7 +29,7 @@ export default defineComponent({
     };
   },
   props: {
-    pageTitle: {
+    page_title: {
       type: String,
       default: "",
     },
